@@ -1,0 +1,32 @@
+<template name="adminEditFinancial">
+  {{> adminAlert}}
+  <div class="box box-default">
+    <div class="box-body">
+      {{#autoForm collection="Financial" id="adminEditFinancialForm" type="update"  doc=doc resetOnSuccess=true}}
+      {{> afQuickField name="finType" options="allowed"}}
+      {{#if afFieldValueIs name="finType" value="Bank"}}
+      {{> afQuickField name="bank" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="finType" value="Insurance"}}
+      {{> afQuickField name="insurance" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="finType" value="Bureau De Change"}}
+      {{> afQuickField name="bureau" options="allowed"}}
+      {{/if}}
+
+      {{> afQuickField name="finName" }}
+
+      {{> afQuickField name="phoneNo1"}}
+      {{> afQuickField name="phoneNo2" }}
+      {{> afQuickField name="email" }}
+
+      {{> afQuickField name="createdOn"}}
+      {{> afQuickField name="createdBy" }}
+
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit">Update</button>
+        </div>
+      {{/autoForm}}
+    </div>
+  </div>
+</template>

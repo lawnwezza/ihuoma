@@ -1,0 +1,24 @@
+<template name="ApplicationLayout">
+  <div class="container">
+    <div id="main">
+      {{> navbar}}
+      {{> yield}}
+      {{> footer}}
+    </div>
+  </div>
+</template>
+
+<template name="loading">
+  {{>spinner}}
+</template>
+
+<template name="welcome">
+  <div class="container">
+  {{> slideshow}}
+  <a class="enter" href="/insertPropertyForm">
+  <div class="col-md-3 btn btn-info btn-lg">
+  ENTER
+  </div>
+  </a>
+</div>
+</template>

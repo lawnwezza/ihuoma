@@ -1,0 +1,53 @@
+<template name="insertStoreForm">
+  {{#if isSuccessfulInsert}}
+  <div class="container">
+    {{> alert}}
+  </div>
+  {{else}}
+  <div class="container">
+  {{#if noCurrentUser}}
+    <div class="container">
+  {{> login}}
+</div>
+  {{else}}
+  <h1>Insert Store Form!</h1>
+  <div class="well">
+      {{#autoForm collection="Store" id="insertStoreForm" type="insert" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-6" type="method" meteormethod="addStore" resetOnSuccess=true}}
+      <fieldset>
+        <legend>Store/Salon Details</legend>
+
+        {{> afQuickField name="stoType" options="allowed"}}
+        {{#if afFieldValueIs name="stoType" value="Store"}}
+        {{> afQuickField name="sto" options="allowed"}}
+        {{/if}}
+        {{#if afFieldValueIs name="stoType" value="Beauty/Barbing Salon"}}
+        {{> afQuickField name="salon" options="allowed"}}
+        {{/if}}
+
+    {{> afQuickField name="bizName" }}
+    <legend> Owner's Details</legend>
+    {{> afQuickField name="firstName" }}
+    {{> afQuickField name="otherName" }}
+    {{> afQuickField name="surName" }}
+    {{> afQuickField name="sex" options="allowed" }}
+    {{> afQuickField name="maritalStatus" options="allowed" }}
+    {{> afQuickField name="doBirth"}}
+
+    {{> afQuickField name="phoneNo1"}}
+    {{> afQuickField name="phoneNo2" }}
+    {{> afQuickField name="email" }}
+
+    {{> afQuickField name="createdOn"}}
+    {{> afQuickField name="createdBy" }}
+    {{> afQuickField name="propId" value=_id}}
+
+  </fieldset>
+
+  <button type = "submit" class="btn btn-primary">Submit</button>
+
+    {{/autoForm}}
+</div>
+{{/if}}
+</div>
+{{/if}}
+</template>

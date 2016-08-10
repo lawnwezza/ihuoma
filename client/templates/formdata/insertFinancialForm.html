@@ -1,0 +1,50 @@
+<template name="insertFinancialForm">
+  {{#if isSuccessfulInsert}}
+  <div class="container">
+    {{> alert}}
+  </div>
+  {{else}}
+  <div class="container">
+  {{#if noCurrentUser}}
+    <div class="container">
+  {{> login}}
+  </div>
+  {{else}}
+  <h1>Insert Financial Form!</h1>
+  <div class="well">
+      {{#autoForm collection="Financial" id="insertFinancialForm" type="insert" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-6" type="method" meteormethod="addFinancial" resetOnSuccess=true}}
+      <fieldset>
+        <legend>Financial Institution's Details</legend>
+
+        {{> afQuickField name="finType" options="allowed"}}
+        {{#if afFieldValueIs name="finType" value="Bank"}}
+        {{> afQuickField name="bank" options="allowed"}}
+        {{/if}}
+        {{#if afFieldValueIs name="finType" value="Insurance"}}
+        {{> afQuickField name="insurance" options="allowed"}}
+        {{/if}}
+        {{#if afFieldValueIs name="finType" value="Bureau De Change"}}
+        {{> afQuickField name="bureau" options="allowed"}}
+        {{/if}}
+
+        {{> afQuickField name="finName" }}
+
+        {{> afQuickField name="phoneNo1"}}
+        {{> afQuickField name="phoneNo2" }}
+        {{> afQuickField name="email" }}
+
+        {{> afQuickField name="createdOn"}}
+        {{> afQuickField name="createdBy" }}
+        {{> afQuickField name="propId" value=_id}}
+
+  </fieldset>
+
+  <button type = "submit" class="btn btn-primary">Submit</button>
+
+    {{/autoForm}}
+</div>
+{{/if}}
+</div>
+{{/if}}
+<!-- the end of the if isSuccessfulInsert-->
+</template>

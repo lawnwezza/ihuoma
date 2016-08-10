@@ -1,0 +1,42 @@
+<template name="listMarket">
+  <div class="container">
+  {{#if noCurrentUser}}
+    <div class="container">
+  {{> login}}
+</div>
+  {{else}}
+  <h1>Market Shop List</h1>
+  <div class="table-responsive ">
+  <table class="table table-hover table-condensed css-serial">
+    <thead>
+      <tr class="">
+        <th>#</th>
+        {{#if isInRole 'edit'}}
+        <th>Edit</th>{{/if}}
+        <th>ShopID</th>
+        <th>Business Name</th>
+        <th>Shop Address</th>
+        <th>Owner's Name</th>
+        <th>Phone Nos</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each market}}
+        <tr>
+          <td></td>
+          {{#if isInRole 'edit'}}
+        <td><a href="/listMarket/{{_id}}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+        </td>{{/if}}
+          <td><a href="/viewMarket/{{_id}}">{{_id}}</a></td> <!--gives us shop ID -->
+          <td>{{mktName}}</td>
+          <td>{{mktAddrNo}} {{mktAddrName}} {{mktAddrType}},{{abakalikiWard}}{{izziWard}}{{ebonyiWard}},{{mktAddrLga}} </td>
+          <td>{{surName}}, {{firstName}} {{otherName}} </td>
+          <td>{{phoneNo1}}, {{phoneNo2}} </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+{{/if}}
+</div>
+</template>

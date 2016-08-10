@@ -1,0 +1,122 @@
+<template name="adminEditMarket">
+  {{> adminAlert}}
+  <div class="box box-default">
+    <div class="box-body">
+      {{#autoForm collection="Market" id="adminEditMarketForm" type="update"  doc=doc resetOnSuccess=true}}
+      {{> afQuickField name="entType" options="allowed"}}
+      {{> afQuickField name="mktName"}}
+
+      {{> afQuickField name="mktAddrNo"}}
+      {{> afQuickField name="mktAddrName"}}
+      {{> afQuickField name="mktAddrType" options="allowed"}}
+      {{> afQuickField name="mktAddrLga" options="allowed"}}
+      {{#if afFieldValueIs name="mktAddrLga" value="Abakaliki"}}
+      {{> afQuickField name="abakalikiWard" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="mktAddrLga" value="Ebonyi"}}
+      {{> afQuickField name="ebonyiWard" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="mktAddrLga" value="Izzi"}}
+      {{> afQuickField name="izziWard" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="mktAddrLga" value="Ohaukwu"}}
+      {{> afQuickField name="ohaukwuWard" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="mktAddrLga" value="Ezza North"}}
+      {{> afQuickField name="ezzaNorthWard" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="mktAddrLga" value="Ezza South"}}
+      {{> afQuickField name="ezzaSouthWard" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="mktAddrLga" value="Ikwo"}}
+      {{> afQuickField name="ikwoWard" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="mktAddrLga" value="Ishielu"}}
+      {{> afQuickField name="ishieluWard" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="mktAddrLga" value="Afikpo North"}}
+      {{> afQuickField name="afikpoNorthWard" options="allowed"}}
+      {{/if}}
+
+      {{#if afFieldValueIs name="mktAddrLga" value="Afikpo South"}}
+      {{> afQuickField name="afikpoSouthWard" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="mktAddrLga" value="Ivo"}}
+      {{> afQuickField name="ivoWard" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="mktAddrLga" value="Ohaozara"}}
+      {{> afQuickField name="ohaozaraWard" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="mktAddrLga" value="Onicha"}}
+      {{> afQuickField name="onichaWard" options="allowed"}}
+      {{/if}}
+
+      <legend>Market Owner's Details</legend>
+
+      {{> afQuickField name="firstName" }}
+      {{> afQuickField name="otherName" }}
+      {{> afQuickField name="surName" }}
+
+      {{> afQuickField name="ownAddrNo"}}
+      {{> afQuickField name="ownAddrName"}}
+      {{> afQuickField name="ownAddrType" options="allowed"}}
+      {{> afQuickField name="ownAddrLga" options="allowed"}}
+      {{#if afFieldValueIs name="ownAddrLga" value="Abakaliki"}}
+      {{> afQuickField name="ownAbakalikiWard" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="ownAddrLga" value="Ebonyi"}}
+      {{> afQuickField name="ownEbonyiWard" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="ownAddrLga" value="Izzi"}}
+      {{> afQuickField name="ownIzziWard" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="ownAddrLga" value="Ohaukwu"}}
+      {{> afQuickField name="ownOhaukwuWard" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="ownAddrLga" value="Ezza North"}}
+      {{> afQuickField name="ownEzzaNorthWard" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="ownAddrLga" value="Ezza South"}}
+      {{> afQuickField name="ownEzzaSouthWard" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="ownAddrLga" value="Ikwo"}}
+      {{> afQuickField name="ownIkwoWard" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="ownAddrLga" value="Ishielu"}}
+      {{> afQuickField name="ownIshieluWard" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="ownAddrLga" value="Afikpo North"}}
+      {{> afQuickField name="ownAfikpoNorthWard" options="allowed"}}
+      {{/if}}
+
+      {{#if afFieldValueIs name="ownAddrLga" value="Afikpo South"}}
+      {{> afQuickField name="ownAfikpoSouthWard" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="ownAddrLga" value="Ivo"}}
+      {{> afQuickField name="ownIvoWard" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="ownAddrLga" value="Ohaozara"}}
+      {{> afQuickField name="ownOhaozaraWard" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="ownAddrLga" value="Onicha"}}
+      {{> afQuickField name="ownOnichaWard" options="allowed"}}
+      {{/if}}
+
+
+      {{> afQuickField name="sex" options="allowed" }}
+      {{> afQuickField name="maritalStatus" options="allowed" }}
+      {{> afQuickField name="doBirth"}}
+      {{> afQuickField name="phoneNo1"}}
+      {{> afQuickField name="phoneNo2"}}
+      {{> afQuickField name="email"}}
+
+      {{> afQuickField name="createdOn"}}
+      {{> afQuickField name="createdBy" }}
+
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit">Update</button>
+        </div>
+      {{/autoForm}}
+    </div>
+  </div>
+</template>

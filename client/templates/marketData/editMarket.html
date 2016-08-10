@@ -1,0 +1,32 @@
+<template name="editMarket">
+  {{#if noCurrentUser}}
+    <div class="container">
+  {{> login}}
+  </div>
+  {{else}}
+  <div class="container">
+  {{#if isInRole 'edit'}}
+  <h2>Pls, enter market store id</h2>
+    <form class="js-edit-market">
+        <div class="form-group row">
+          <div class="col-sm-2"></div>
+          <label for="Search ID" class="col-sm-2 form-control-label form-control-lg">market store id</label>
+          <div class="col-sm-4">
+          <input type="text" class="form-control form-control-lg" id="mktID" name="mktID" placeholder="Market ID">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-sm-4"></div>
+          <div class="col-sm-4">
+          <input type="submit" class="btn btn-warning" value="Edit" style="width:100px">
+          </div>
+        </div>
+    </form>
+    {{else}}
+    {{> forbidden}}
+    {{/if}}
+  </div>
+  {{/if}}
+
+</template>

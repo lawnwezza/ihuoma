@@ -1,0 +1,89 @@
+
+<template name="viewMarket">
+<div class="container">
+  {{#if noCurrentUser}}
+    <div class="container">
+  {{> login}}
+</div>
+  {{else}}
+  <h1>View Shop Details!</h1>
+  <div class="well">
+<div class="row">
+<div class="col-md-2">
+
+</div>
+<div class="col-md-8">
+  <div>
+  <h3>Shop Details</h3>
+  <table class="table table-hover" width="100%">
+    <col style="width:30%">
+    <col style="width:70%">
+    <tr>
+      <th>Shop ID:</th>
+      <td>{{_id}}</td>
+    </tr>
+<tr>
+  <th>Created On:</th>
+  <td>{{createdOn}}</td>
+</tr>
+
+<tr>
+  <th>Created By:</th>
+  <td>{{createdBy}}</td>
+</tr>
+
+<tr>
+      <th>Market Shop Location:</th>
+      <td>{{mktAddrNo}}, {{mktAddrName}} {{mktAddrType}}, {{abakalikiWard}}{{izziWard}}{{ebonyiWard}}, {{mktAddrLga }} </td>
+    </tr>
+
+
+  </table>
+</div> <!--end prop details -->
+
+  <div>
+  <h3>Owner Details</h3>
+  <table class="table table-hover" width="100%">
+    <col style="width:30%">
+    <col style="width:70%">
+    <tr>
+      <th>Business Name:</th>
+      <td>{{mktName}}</td>
+    </tr>
+    <tr>
+      <th>Full Name:</th>
+      <td>{{surName}}, {{firstName}} {{otherName}}</td>
+    </tr>
+
+    <tr>
+      <th>Residential Address:</th>
+      <td>{{ownAddrNo}}, {{ownAddrName}} {{ownAddrType}}, {{ownAbakalikiWard}}{{ownIzziWardizziWard}}{{ownEbonyiWard}}, {{ownAddrLga}}</td>
+    </tr>
+    <tr>
+      <th>Telephone:</th>
+      <td>{{phoneNo1}}  {{phoneNo2}}</td>
+    </tr>
+    <tr>
+      <th>Email:</th>
+      <td>{{email}}</td>
+    </tr>
+    <tr>
+      <th>Marital Status:</th>
+      <td>{{maritalStatus}}</td>
+    </tr>
+    <tr>
+      <th>Sex:</th>
+      <td>{{sex}}</td>
+    </tr>
+  </table>
+  </div>
+
+
+</div><!--end col-8 div -->
+</div><!--end row div -->
+
+
+</div><!--end wells div -->
+{{/if}}
+</div> <!--end container div -->
+</template>

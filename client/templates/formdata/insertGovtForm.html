@@ -1,0 +1,64 @@
+<template name="insertGovtForm">
+  {{#if isSuccessfulInsert}}
+  <div class="container">
+  {{> alert}}
+  </div>
+  {{else}}
+
+  <div class="container">
+  {{#if noCurrentUser}}
+    <div class="container">
+  {{> login}}
+</div>
+  {{else}}
+  <h1>Insert Goverment/Religious Form!</h1>
+  <div class="well">
+      {{#autoForm collection="Govt" id="insertGovtForm" type="insert" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-6" type="method" meteormethod="addGovt" resetOnSuccess=true}}
+      <fieldset>
+        <legend> Institution Details</legend>
+
+        {{> afQuickField name="govType" options="allowed"}}
+        {{#if afFieldValueIs name="govType" value="Government"}}
+        {{> afQuickField name="govmnt" options="allowed"}}
+        {{/if}}
+        {{#if afFieldValueIs name="govType" value="Worship Center"}}
+        {{> afQuickField name="rel" options="allowed"}}
+        {{/if}}
+        {{#if afFieldValueIs name="govType" value="Tertiary Institution"}}
+        {{> afQuickField name="tert" options="allowed"}}
+        {{/if}}
+        {{#if afFieldValueIs name="govType" value="Secondary/Vocational School"}}
+        {{> afQuickField name="sec" options="allowed"}}
+        {{/if}}
+        {{#if afFieldValueIs name="govType" value="Nursery/Primary School"}}
+        {{> afQuickField name="pri" options="allowed"}}
+        {{/if}}
+
+        {{> afQuickField name="instName" }}
+        <legend><small>Start of portion applicable to private institutions ONLY</small></legend>
+        {{> afQuickField name="firstName" }}
+        {{> afQuickField name="otherName" }}
+        {{> afQuickField name="surName" }}
+
+        {{> afQuickField name="sex" options="allowed" }}
+        {{> afQuickField name="maritalStatus" options="allowed" }}
+        {{> afQuickField name="doBirth"}}
+        <legend><small>End of portion applicable to private institutions ONLY</small></legend>
+        {{> afQuickField name="phoneNo1"}}
+        {{> afQuickField name="phoneNo2" }}
+        {{> afQuickField name="email" }}
+
+        {{> afQuickField name="createdOn"}}
+        {{> afQuickField name="createdBy" }}
+        {{> afQuickField name="propId" value=_id}}
+
+  </fieldset>
+
+  <button type = "submit" class="btn btn-primary">Submit</button>
+
+    {{/autoForm}}
+</div>
+{{/if}}
+</div>
+{{/if}}
+</template>

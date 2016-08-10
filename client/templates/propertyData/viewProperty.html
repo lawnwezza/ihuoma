@@ -1,0 +1,324 @@
+
+<template name="viewProperty">
+  <div class="container">
+    {{#if noCurrentUser}}
+    <div class="container">
+      {{> login}}
+    </div>
+    {{else}}
+    <h1>View Property Details!</h1>
+    <a class="btn btn-primary" href="#property-map-modal" data-toggle="modal" style="margin-bottom:10px" data-lat="{{location.lat}}" data-lng="{{location.long}}">View in Map</a>
+    <a class="btn btn-primary" href="#addCategoryModal" data-property-id="{{_id}}" data-toggle="modal" style="margin-bottom:10px">Add Category</a>
+    <div class="well">
+      <div class="row">
+        <div class="col-md-2">
+
+        </div>
+        <div class="col-md-8">
+
+          <div>
+            <h3> Property Details</h3>
+            <table class="table table-hover" width="100%">
+              <col style="width:30%">
+              <col style="width:70%">
+              <tr>
+                <th>Property Id:</th>
+                <td>{{_id}}</td>
+              </tr>
+
+              <tr>
+                <th>Enumeration Zone:</th>
+                <td>{{enumArea}}</td>
+              </tr>
+              <tr>
+                <th>CreatedOn :</th>
+                <td>{{createdOn}}</td>
+              </tr>
+              <tr>
+                <th>CreatedBy:</th>
+                <td>{{createdBy}}</td>
+              </tr>
+              <tr>
+                <th>Property Address:</th>
+                <td>{{propAddrNo}}, {{propAddrName}} {{propAddrType}}, {{abakalikiWard}}{{izziWard}}{{ebonyiWard}}{{ohaukwuWard}}{{ezzaNorthWard}}{{ezzaSouthWard}}{{ikwoWard}}{{ishieluWard}}{{afikpoNorthWard}}{{afikpoSouthWard}}{{ivoWard}}{{ohaozaraWard}}{{onichaWard}}, {{propAddrLga}}</td>
+              </tr>
+            </table>
+          </div> <!--end property details -->
+
+          <div>
+            <h3>Owner Details</h3>
+            <table class="table table-hover" width="100%">
+              <col style="width:30%">
+              <col style="width:70%">
+              <tr>
+                <th>Full Name:</th>
+                <td>{{surName}}, {{firstName}} {{otherName}}</td>
+              </tr>
+
+              <tr>
+                <th>Residential Address:</th>
+                <td>{{ownAddrNo}}, {{ownAddrName}} {{ownAddrType}}, {{ownAbakalikiWard}}{{ownIzziWard}}{{ownEbonyiWard}}{{ownOhaukwuWard}}{{ownEzzaNorthWard}}{{ownEzzaSouthWard}}{{ownIkwoWard}}{{ownIshieluWard}}{{ownAfikpoNorthWard}}{{ownAfikpoSouthWard}}{{ownIvoWard}}{{ownOhaozaraWard}}{{ownOnichaWard}}, {{ownAddrLga}}</td>
+              </tr>
+
+              <tr>
+                <th>Telephone:</th>
+                <td>{{phoneNo1}}, {{phoneNo2}}</td>
+              </tr>
+              <tr>
+                <th>Email:</th>
+                <td>{{email}}</td>
+              </tr>
+              <tr>
+                <th>Marital Status:</th>
+                <td>{{maritalStatus}}</td>
+              </tr>
+              <tr>
+                <th>Sex:</th>
+                <td>{{sex}}</td>
+              </tr>
+            </table>
+          </div> <!-- / end owner details-->
+
+          {{#if residential}}
+          <div>
+            <h3>Residential Details</h3>
+            <table class="table table-hover css-serial table-condensed">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Tenant Name</th>
+                  <th>Appartment<br>Type</th>
+                  <th>Occupation</th>
+                  <th>Phone No</th>
+                  <th>Annual Payment</th>
+                  <th style="width: 40px">Edit</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each residential}}
+                <tr>
+                  <td></td>
+                  <td>{{surName}},<br>{{firstName}} {{otherName}}<br><strong>{{_id}}</strong></td>
+                  <td>{{accoType}}:<br>{{duplex}}{{bungalow}}{{apartment}}</td>
+                  <td>{{occupation}}</td>
+                  <td>{{phoneNo1}}<br>{{phoneNo2}}</td>
+                  <td>{{getAnnualPayment accoType duplex bungalow apartment}}</td>
+                  <td><a href="/residential/{{_id}}" class="btn btn-primary btn-sm"><span class="fa fa-pencil" aria-hidden="true"></span></a></td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div> <!--end table div -->
+          {{/if}}
+
+          {{#if store}}
+          <div>
+            <h3>Store/Salon Details</h3>
+            <table class="table table-hover css-serial table-condensed">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Business Name</th>
+                  <th>Owner's Name</th>
+                  <th>Business Type</th>
+                  <th>Phone No</th>
+                  <th>Annual Payment</th>
+                  <th style="width: 40px">Edit</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each store}}
+                <tr>
+                  <td></td>
+                  <td>{{bizName}}<br><strong>{{_id}}</strong></td>
+                  <td>{{surName}},<br>{{firstName}} {{otherName}}</td>
+                  <td>{{stoType}}:<br>{{sto}}{{salon}}</td>
+                  <td>{{phoneNo1}}<br>{{phoneNo2}}</td>
+                  <td>{{getAnnualPayment stoType sto salon}}</td>
+                  <td><a href="/store/{{_id}}" class="btn btn-primary btn-sm"><span class="fa fa-pencil" aria-hidden="true"></span></a></td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div> <!--end table div -->
+          {{/if}}
+
+          {{#if commercial}}
+          <div>
+            <h3>Commercial Details</h3>
+            <table class="table table-hover css-serial table-condensed">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Business Name</th>
+                  <th>Owner's Name</th>
+                  <th>Business Type</th>
+                  <th>Phone No</th>
+                  <th>Annual Payment</th>
+                  <th style="width: 40px">Edit</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each commercial}}
+                <tr>
+                  <td></td>
+                  <td>{{bizName}}<br><strong>{{_id}}</strong></td>
+                  <td>{{surName}},<br>{{firstName}} {{otherName}}</td>
+                  <td>{{comType}}:<br>{{bizcenter}}{{printpress}}{{transport}}{{elect}}{{boutique}}{{artisan}}</td>
+                  <td>{{phoneNo1}}<br>{{phoneNo2}}</td>
+                  <td>{{getAnnualPayment comType bizcenter printpress transport elect boutique artisan}}</td>
+                  <td><a href="/commercial/{{_id}}" class="btn btn-primary btn-sm"><span class="fa fa-pencil" aria-hidden="true"></span></a></td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div> <!--end table div -->
+          {{/if}}
+
+
+          {{#if entertain}}
+          <div>
+            <h3>Entertainment Details</h3>
+            <table class="table table-hover css-serial table-condensed">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Business Name</th>
+                  <th>Owner's Name</th>
+                  <th>Business Type</th>
+                  <th>Phone No</th>
+                  <th>Annual Payment</th>
+                  <th style="width: 40px">Edit</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each entertain}}
+                <tr>
+                  <td></td>
+                  <td>{{bizName}}<br><strong>{{_id}}</strong></td>
+                  <td>{{surName}},<br>{{firstName}} {{otherName}}</td>
+                  <td>{{entType}}:<br>{{hotel}}{{cres}}{{ores}}{{recreation}}{{nclub}}{{video}}</td>
+                  <td>{{phoneNo1}}<br>{{phoneNo2}}</td>
+                  <td>{{getAnnualPayment entType hotel cres ores recreation nclub video}}</td>
+                  <td><a href="/entertain/{{_id}}" class="btn btn-primary btn-sm"><span class="fa fa-pencil" aria-hidden="true"></span></a></td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div> <!--end entertain table div -->
+          {{/if}}
+
+          {{#if financial}}
+          <div>
+            <h3>Financial Details</h3>
+            <table class="table table-hover css-serial table-condensed">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Institution<br>Name</th>
+                  <th>Institution<br>Type</th>
+                  <th>Phone No</th>
+                  <th>Annual Payment</th>
+                  <th style="width: 40px">Edit</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each financial}}
+                <tr>
+                  <td></td>
+                  <td>{{finName}}<br><strong>{{_id}}</strong></td>
+                  <td>{{finType}}:<br>{{bank}} {{insurance}} {{bureau}}</td>
+                  <td>{{phoneNo1}}<br>{{phoneNo2}}</td>
+                  <td>{{getAnnualPayment finType bank insurance bureau}}</td>
+                  <td><a href="/financial/{{_id}}" class="btn btn-primary btn-sm"><span class="fa fa-pencil" aria-hidden="true"></span></a></td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div> <!--end financial table div -->
+          {{/if}}
+
+          {{#if medical}}
+          <div>
+            <h3>Medical Details</h3>
+            <table class="table table-hover css-serial table-condensed">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Institution<br>Name</th>
+                  <th>Institution<br>Type</th>
+                  <th>Phone No</th>
+                  <th>Annual Payment</th>
+                  <th style="width: 40px">Edit</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each medical}}
+                <tr>
+                  <td></td>
+                  <td>{{hosName}}<br><strong>{{_id}}</strong></td>
+                  <td>{{medType}}:<br>{{govhos}}{{privhos}}{{consclinic}}{{pharm}}{{medlab}}</td>
+                  <td>{{phoneNo1}}<br>{{phoneNo2}}</td>
+                  <td>{{getAnnualPayment medType govhos privhos consclinic pharm medlab}}</td>
+                  <td><a href="/medical/{{_id}}" class="btn btn-primary btn-sm"><span class="fa fa-pencil" aria-hidden="true"></span></a></td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div> <!--end medical table div -->
+          {{/if}}
+
+          {{#if govt}}
+          <div>
+            <h3>Government/Religious/Educational Details</h3>
+            <table class="table table-hover css-serial table-condensed">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Institution<br>Name</th>
+                  <th>Institution<br>Type</th>
+                  <th>Phone No</th>
+                  <th>Annual Payment</th>
+                  <th style="width: 40px">Edit</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each govt}}
+                <tr>
+                  <td></td>
+                  <td>{{instName}}<br><strong>{{_id}}</strong></td>
+                  <td>{{govType}}:<br>{{govmnt}}{{rel}}{{tert}}{{sec}}{{pri}}</td>
+                  <td>{{phoneNo1}}<br>{{phoneNo2}}</td>
+                  <td>{{getAnnualPayment govType govmnt rel tert sec pri}}</td>
+                  <td><a href="/govt/{{_id}}" class="btn btn-primary btn-sm"><span class="fa fa-pencil" aria-hidden="true"></span></a></td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div> <!--end govt table div -->
+          {{/if}}
+
+        </div><!--end col-8 div -->
+      </div><!--end row div -->
+
+
+    </div><!--end wells div -->
+    {{> viewPropertyInMap mapProperty=mapProperty}}
+    {{> addCategoryModal}}
+    {{/if}}
+  </div> <!--end container div -->
+</template>
+
+<template name="viewPropertyInMap">
+  <div class="modal fade" id="property-map-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="map-container">
+            {{> googleMap name="propertyMap" options=mapProperty}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

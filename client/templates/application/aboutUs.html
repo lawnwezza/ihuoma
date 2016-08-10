@@ -1,0 +1,55 @@
+<template name="aboutUs">
+  <div class="container">
+  <h1>About Us</h1>
+  <div class="container">
+    <!--In this section, we used the column class to create div where we are going to add the panel -->
+      <div class="row row-content">
+          <div class="col-xs-12 col-sm-8">
+              <h2>Our History</h2>
+              <p>"At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non  Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."</p>
+              <p>Et harum quidem rerum facilis est et expedita distinctio<em>Nam Libero Tempore</em>, ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur</p>
+
+          <!--we are creating a div with class well to create a well using the html blockquote tag. the blockquote is used to                   highlight a quotation and html does that by placing a vertical line beside the text of the quotation. the footer tag                 allows us to specify the author of the quote  -->
+
+              <div class="well">
+                  <blockquote>
+                      <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui sint occaecati cupiditate non provident</p>
+                      <footer>Temporibus Quibusdam,
+                        <cite>ipsum quia dolor sit amet, consectetur, adipisci velit, 2014</cite>
+                      </footer>
+                  </blockquote>
+              </div>
+
+
+          </div>
+
+          <!--this is where we are adding the panel. You should also note that we are using the description list which is a html               tag to display the content of the panel  -->
+
+          <div class="col-xs-12 col-sm-4" >
+              <p style="padding:20px;"></p>
+              <!--panel-primary implies that the heading will use the bootstrap primar color which is blue -->
+              <div class="panel panel-primary">
+                  <div class="panel-heading">
+                      <h3 class="panel-title">Odio Dignissimos Ducimus</h3>
+                  </div>
+                  <div class="panel-body">
+                      <!-- the class of dl-horizontal implies that the dt and the dl elements are going to be placed side by side                            in a horizontal manner.-->
+                      <dl class="dl-horizontal">
+                          <dt>Assumenda </dt>
+                          <dd>3 Feb. 2013</dd>
+                          <dt>Ducimus Qui Blanditiis</dt>
+                          <dd>Et Harum Quidem Inc.</dd>
+                          <dt>Necessitatibus Eveniet</dt>
+                          <dd>N1,250,375</dd>
+                          <dt>Accusamus </dt>
+                          <dd>40</dd>
+                     </dl>
+                  </div>
+              </div>
+          </div>
+      </div> <!-- end of row content div -->
+
+
+  </div>
+</div>
+</template>

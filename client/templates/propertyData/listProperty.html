@@ -1,0 +1,114 @@
+<template name="listProperty">
+  <div class="container">
+    {{#if noCurrentUser}}
+    <div class="container">
+      {{> login}}
+    </div>
+    {{else}}
+    <h1>Property List</h1>
+    <a class="btn btn-primary pull-right" href="{{pathFor route='listMyProperty'}}" role="button" style="margin-left:10px">My properties</a>
+    <a class= "addButton btn btn-primary pull-right" href="{{pathFor route='insertPropertyForm'}}" role="button">Add property</a>
+
+    <!-- this is the point I will start changing -->
+
+    <div>
+      <table class="css-serial">
+        <thead>
+          <tr>
+            <th>#</th>{{#if isInRole 'edit'}}
+            <th>Edit</th>{{/if}}
+            <th>PropertyID:<br>Phone No</th>
+            <th>Enumeration Area:<br>Property Address</th>
+            <th>Owner's Name:<br>Address</th>
+            <th>Residential Category</th>
+            <th>Store/Salon Category</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each property}}
+          <tr>
+            <strong><td></td></strong>{{#if isInRole 'edit'}}
+            <td><a href="/listProperty/{{_id}}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a><br>
+              <a href="#addCategoryModal" data-toggle="modal" data-property-id="{{_id}}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
+            </td>{{/if}}
+            <td><a href="/viewProperty/{{_id}}">{{_id}}</a>:<br>{{phoneNo1}}<br>{{phoneNo2}}</td>
+            <td>{{enumArea}}:<br>{{propAddrNo}} {{propAddrName}} {{propAddrType}}, {{abakalikiWard}}{{izziWard}}{{ebonyiWard}}{{ohaukwuWard}}{{ezzaNorthWard}}{{ezzaSouthWard}}{{ikwoWard}}{{ishieluWard}}{{afikpoNorthWard}}{{afikpoSouthWard}}{{ivoWard}}{{ohaozaraWard}}{{onichaWard}}, {{propAddrLga}} </td>
+            <td>{{surName}}, {{firstName}} {{otherName}}:<br>{{ownAddrNo}} {{ownAddrName}} {{ownAddrType}},{{ownAbakalikiWard}}{{ownIzziWard}}{{ownEbonyiWard}}{{ownOhaukwuWard}}{{ownEzzaNorthWard}}{{ownEzzaSouthWard}}{{ownIkwoWard}}{{ownIshieluWard}}{{ownAfikpoNorthWard}}{{ownAfikpoSouthWard}}{{ownIvoWard}}{{ownOhaozaraWard}}{{ownOnichaWard}}, {{ownAddrLga}}.</td>
+            <td>
+              <table class="css-serial">
+                <thead>
+                  <tr>
+                    <th>#.</th>
+                    <td><i>Tenant Name<br>Phone</i></td>
+                    <td><i>Apartment<br>Type</i></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each residential}}
+                  <tr>
+                <strong><td></td></strong>
+                    <td>{{surName}},<br>{{firstName}} {{otherName}}<br>{{phoneNo1}}<br>{{phoneNo2}}</td>
+                    <td>{{accoType}}:<br>{{duplex}}{{bungalow}}{{apartment}}</td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </td>
+            <!-- end of Residential section-->
+            <td>
+              <table class="css-serial">
+                <thead>
+                  <tr>
+                    <th>#.</th>
+                    <td><i>Business Name<br>Phone</i></td>
+                    <td><i>Owner's<br>Name</i></td>
+                    <td><i>Business<br>Type</i></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{#each store}}
+                  <tr>
+                    <strong><td></td></strong>
+                    <td>{{bizName}}<br>{{phoneNo1}}<br>{{phoneNo2}}</td>
+                    <td>{{surName}},<br>{{firstName}} {{otherName}}</td>
+                    <td>{{stoType}}:<br>{{sto}}{{salon}}</td>
+                  </tr>
+                  {{/each}}
+                </tbody>
+              </table>
+            </td>
+            <!--end of Store section -->
+            </tr> <!-- end of the main property table row -->
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+    {{> addCategoryModal}}
+    {{/if}}
+  </div>
+</template>
+
+<template name="addCategoryModal">
+  <div class="modal fade" id="addCategoryModal" tabindex='-1' role="dialog" arialabelledby="myModalLabel">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Choose a Category</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            {{#each Config.categories}}
+            <div class="col-md-4 text-center">
+              <a href="" data-route={{route}} class="grid-link-item">
+                <h1><span aria-hidden="true" class="{{iconClass}}"></span></h1>
+                <p>{{title}}</p>
+              </a>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

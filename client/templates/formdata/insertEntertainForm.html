@@ -1,0 +1,66 @@
+<template name="insertEntertainForm">
+  {{#if isSuccessfulInsert}}
+  <div class="container">
+    {{> alert}}
+  </div>
+  {{else}}
+  <div class="container">
+  {{#if noCurrentUser}}
+    <div class="container">
+  {{> login}}
+</div>
+  {{else}}
+  <h1>Insert Entertainment Form!</h1>
+  <div class="well">
+      {{#autoForm collection="Entertain" id="insertEntertainForm" type="insert" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-6" type="method" meteormethod="addEntertain" resetOnSuccess=true}}
+      <fieldset>
+        <legend>Entertainment Business Details</legend>
+
+        {{> afQuickField name="entType" options="allowed"}}
+        {{#if afFieldValueIs name="entType" value="Hotel"}}
+        {{> afQuickField name="hotel" options="allowed"}}
+        {{/if}}
+        {{#if afFieldValueIs name="entType" value="Continental Resturant"}}
+        {{> afQuickField name="cres" options="allowed"}}
+        {{/if}}
+        {{#if afFieldValueIs name="entType" value="Ordinary Resturant"}}
+        {{> afQuickField name="ores" options="allowed"}}
+        {{/if}}
+        {{#if afFieldValueIs name="entType" value="Recreational Facility"}}
+        {{> afQuickField name="recreation" options="allowed"}}
+        {{/if}}
+        {{#if afFieldValueIs name="entType" value="Night Club"}}
+        {{> afQuickField name="nclub" options="allowed"}}
+        {{/if}}
+        {{#if afFieldValueIs name="entType" value="Video Rentals"}}
+        {{> afQuickField name="video" options="allowed"}}
+        {{/if}}
+
+        {{> afQuickField name="bizName" }}
+        <legend>Owner's Details</legend>
+        {{> afQuickField name="firstName" }}
+        {{> afQuickField name="otherName" }}
+        {{> afQuickField name="surName" }}
+
+        {{> afQuickField name="sex" options="allowed" }}
+        {{> afQuickField name="maritalStatus" options="allowed" }}
+        {{> afQuickField name="doBirth"}}
+
+        {{> afQuickField name="phoneNo1"}}
+        {{> afQuickField name="phoneNo2" }}
+        {{> afQuickField name="email" }}
+
+        {{> afQuickField name="createdOn"}}
+        {{> afQuickField name="createdBy" }}
+        {{> afQuickField name="propId" value=_id}}
+
+  </fieldset>
+
+  <button type = "submit" class="btn btn-primary">Submit</button>
+
+    {{/autoForm}}
+</div>
+{{/if}}
+</div>
+{{/if}}
+</template>

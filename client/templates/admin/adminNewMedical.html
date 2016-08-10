@@ -1,0 +1,47 @@
+<template name="adminNewMedical">
+  {{> adminAlert}}
+  <div class="box box-default">
+    <div class="box-body">
+          {{#autoForm collection="Medical" id="adminAddMedicalForm" type="method" meteormethod="addMedical" resetOnSuccess=true}}
+          {{> afQuickField name="medType" options="allowed"}}
+          {{#if afFieldValueIs name="medType" value="Government Hospital"}}
+          {{> afQuickField name="govhos" options="allowed"}}
+          {{/if}}
+          {{#if afFieldValueIs name="medType" value="Private Hospital"}}
+          {{> afQuickField name="privhos" options="allowed"}}
+          {{/if}}
+          {{#if afFieldValueIs name="medType" value="Consulting Clinic"}}
+          {{> afQuickField name="consclinic" options="allowed"}}
+          {{/if}}
+          {{#if afFieldValueIs name="medType" value="Pharmacy"}}
+          {{> afQuickField name="pharm" options="allowed"}}
+          {{/if}}
+          {{#if afFieldValueIs name="medType" value="Medical Laboratory"}}
+          {{> afQuickField name="medlab" options="allowed"}}
+          {{/if}}
+
+          {{> afQuickField name="hosName" }}
+          <legend><small>Start of portion applicable to private hospitals ONLY</small></legend>
+          {{> afQuickField name="firstName" }}
+          {{> afQuickField name="otherName" }}
+          {{> afQuickField name="surName" }}
+
+          {{> afQuickField name="sex" options="allowed" }}
+          {{> afQuickField name="maritalStatus" options="allowed" }}
+          {{> afQuickField name="doBirth"}}
+          <legend><small>End of portion applicable to private hospitals ONLY</small></legend>
+          {{> afQuickField name="phoneNo1"}}
+          {{> afQuickField name="phoneNo2" }}
+          {{> afQuickField name="email" }}
+
+          {{> afQuickField name="createdOn"}}
+          {{> afQuickField name="createdBy" }}
+          {{> afQuickField name="propId" value=_id}}
+
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+      {{/autoForm}}
+    </div>
+  </div>
+</template>

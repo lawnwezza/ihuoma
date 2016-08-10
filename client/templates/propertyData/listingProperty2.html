@@ -1,0 +1,113 @@
+<template name="listinProperty2">
+  <div class="container">
+  {{#if noCurrentUser}}
+    <div class="container">
+  {{> login}}
+</div>
+  {{else}}
+  <h1>Property List</h1>
+  <div class="table-responsive ">
+  <table class="table table-hover table-condensed css-serial">
+    <thead>
+      <tr class="">
+        <th>#</th>{{#if isInRole 'edit'}}
+        <th>Edit</th>{{/if}}
+        <th>PropertyID</th>
+        <th>Property Details</th>
+        <th>Revenue Details</th>
+        <th>Owner's Name</th>
+        <th>Tenant Details</th>
+        <th>Business Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each property}}
+        <tr>
+          <td></td>{{#if isInRole 'edit'}}
+        <td><a href="/listProperty/{{_id}}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+        </td>{{/if}}
+          <td><a href="/viewProperty/{{_id}}">{{_id}}</a></td>
+          <td>{{propDetails.propAddrNo}} {{propDetails.propAddrName}} {{propDetails.propAddrType}}, {{propDetails.propAddrWard}}, {{propDetails.propAddrLga}} </td>
+          <td>
+            <table class="table table-condensed table-bordered css-serial">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Year</th>
+                  <th>Property Tax</th>
+                  <th>Sanitation Fee</th>
+                  <th>Water Rate</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each propDues}}
+                  <tr>
+                    <td></td>
+                    <td>{{year}}</td>
+                    <td>{{propTax}}</td>
+                    <td>{{sanFee}}</td>
+                    <td>{{waterRate}}</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </td>
+          <td>{{ownerDetail.surName}}, {{ownerDetail.firstName}} {{ownerDetail.otherName}} </td>
+          <td>
+            <table class="table table-condensed table-bordered css-serial">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Full Name</th>
+                  <th>Apartment</th>
+                  <th>Occupation</th>
+                  <th> Phone No</th>
+                  <th>Tax</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each tenantDetails}}
+                  <tr>
+                    <td></td>
+                    <td>{{surName}},{{firstName}} {{otherName}}</td>
+                    <td>{{aptType}}</td>
+                    <td>{{occupation}}</td>
+                    <td>{{phoneNo1}}</td>
+                    <td>{{taxCat}}</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+        </td>
+        <td>
+          <table class="table table-hover css-serial">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Business Name</th>
+                <th>Owner's Name</th>
+                <th>Type</th>
+                <th> Phone No</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each bizDetails}}
+                <tr>
+                  <td></td>
+                  <td>{{bizName}}</td>
+                  <td>{{surName}},{{firstName}} {{otherName}}</td>
+                  <td>{{type}}</td>
+                  <td>{{phoneNo1}}</td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+      </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+{{/if}}
+</div>
+</template>

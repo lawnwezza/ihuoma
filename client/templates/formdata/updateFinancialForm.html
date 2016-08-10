@@ -1,0 +1,60 @@
+<template name="updateFinancialForm">
+  {{#if isSuccessfulInsert}}
+  <div class="container">
+    <h1>The financial category enumeration form was successfully updated to the database!</h1>
+  </div>
+  {{else}}
+  <div class="container">
+  {{#if noCurrentUser}}
+    <div class="container">
+  {{> login}}
+</div>
+  {{else}}
+  {{#if isInRole 'edit'}}
+  <h1>Update Financial Forms!</h1>
+  <div class="well">
+
+
+    {{#autoForm collection="Financial" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-5" id="updateFinancialForm" type="method-update" meteormethod="updateFinancial"
+    doc=this }}
+    <fieldset>
+      <legend>Financial Institution's Details</legend>
+
+      {{> afQuickField name="finType" options="allowed"}}
+      {{#if afFieldValueIs name="finType" value="Bank"}}
+      {{> afQuickField name="bank" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="finType" value="Insurance"}}
+      {{> afQuickField name="insurance" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="finType" value="Bureau De Change"}}
+      {{> afQuickField name="bureau" options="allowed"}}
+      {{/if}}
+
+      {{> afQuickField name="finName" }}
+
+      {{> afQuickField name="phoneNo1"}}
+      {{> afQuickField name="phoneNo2" }}
+      {{> afQuickField name="email" }}
+
+      {{> afQuickField name="createdOn"}}
+      {{> afQuickField name="createdBy" }}
+
+</fieldset>
+
+<button type="submit" class="btn btn-primary">Update</button>
+
+    {{/autoForm}}
+    </div>
+    <div>
+    {{#if isInRole 'admin'}}
+     {{#quickRemoveButton collection="Financial" _id=this._id beforeRemove=beforeRemove class="btn btn-danger" }}Delete{{/quickRemoveButton}}
+     {{/if}}
+  </div>
+  {{else}}
+  {{> forbidden}}
+  {{/if}}
+  {{/if}}
+</div>
+{{/if}}
+</template>

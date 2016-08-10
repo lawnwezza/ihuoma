@@ -1,0 +1,38 @@
+<template name="listQuarry">
+  <div class="container">
+  {{#if noCurrentUser}}
+    <div class="container">
+  {{> login}}
+</div>
+  {{else}}
+  <h1>Quarry List</h1>
+  <div class="table-responsive ">
+  <table class="table table-hover table-condensed css-serial">
+    <thead>
+      <tr class="">
+        <th>#</th>{{#if isInRole 'edit'}}
+        <th>Edit</th>{{/if}}
+        <th>QuarryID</th>
+        <th>Quarry Address</th>
+        <th>Quarry Name</th>
+        <th>Owner's Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each quarry}}
+        <tr>
+          <td></td>{{#if isInRole 'edit'}}
+          <td><a href="/listQuarry/{{_id}}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+          </td>{{/if}}
+          <td><a href="/viewQuarry/{{_id}}">{{_id}}</a></td>
+          <td>{{qryAddrNo}} {{qryAddrName}} {{qryAddrType}}, {{abakalikiWard}}{{izziWard}}{{ebonyiWard}}, {{qryAddrLga}} </td>
+          <td>{{qryName}} </td>
+          <td>{{surName}}, {{firstName}} {{otherName}} </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+{{/if}}
+</div>
+</template>
