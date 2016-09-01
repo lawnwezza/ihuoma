@@ -1,4 +1,4 @@
-var MAP_ZOOM = 15;
+MAP_ZOOM = 15;
 
 Meteor.Spinner.options = {
   lines: 13, // The number of lines to draw
