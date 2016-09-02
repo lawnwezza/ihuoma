@@ -1,6 +1,27 @@
+//implementing infinite scroll
+Session.set("propertyLimit",20);
+lastScrollTop = 0;
+//this is ok
+$(window).scroll(function(event){
+//the first if statement
+//test to see if we are at the bottom of the page
+if($(window).scrollTop() + $(window).height() > $(document).height() - 100){
+//console.log(new Date());
+var scrollTop = $(this).scrollTop();
+if(scrollTop > lastScrollTop){
+//console.log("going down at the bottom");
+Session.set("propertyLimit", Session.get("propertyLimit") + 20);
+}
+lastScrollTop = scrollTop;
+}//end of the if statement
+
+});// end of the scroll function
+
+
+
 Template.listProperty.helpers({
   property: function(){
-    return Property.find({},{sort:{createdOn:-1}});
+    return Property.find({},{sort:{createdOn:-1}, limit:Session.get("propertyLimit")});
   },
   residential: function(){
     propId = this._id;
