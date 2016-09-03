@@ -1,10 +1,11 @@
 Session.setDefault("skip",0);
-Meteor.autorun(function(){
+Tracker.autorun(function(){
 //console.log("what is happening here");
 Meteor.subscribe("property",Session.get("skip"));
 });
 Template.listProperty.helpers({
   property: function(){
+    //Note that if you want the documents in sorted order on the client, you will need to sort them again in your template code.
     return Property.find({},{sort:{createdOn:-1}});
   },
   residential: function(){
@@ -65,5 +66,24 @@ Template.listProperty.events({
   "click .addButton": function(event, template){
     //console.log("I am clicking the addButton");
     return Session.set('successfulInsertForm', false)
+  },
+  "click .previous":function(event, template){
+    console.log("previous clicked");
+    if(Number(Session.get("skip")) > 19){
+      Session.set("skip", Number(Session.get("skip")) -20);
+    }
+  },
+  "click .next": function(event,template){
+    console.log("next clicked");
+      Session.set("skip", Number(Session.get("skip")) +20);
   }
 });
+Template.listProperty.nextText = function(){
+return (Number(Session.get("skip")) +20) + " " + (Number(Session.get("skip")) +40);
+}
+Template.listProperty.prevText =function(){
+if(Number(Session.get("skip")) < 20){
+  return "";
+}
+return (Number(Session.get("skip")) -20) + " " + (Number(Session.get("skip")));
+}
