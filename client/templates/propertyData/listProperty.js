@@ -1,3 +1,8 @@
+Session.setDefault("skip",0);
+Meteor.autorun(function(){
+//console.log("what is happening here");
+Meteor.subscribe("property",Session.get("skip"));
+});
 Template.listProperty.helpers({
   property: function(){
     return Property.find({},{sort:{createdOn:-1}});
