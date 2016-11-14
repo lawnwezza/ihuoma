@@ -1,0 +1,58 @@
+<template name="insertResidentialForm">
+  {{#if isSuccessfulInsert}}
+  <div class="container">
+    {{> alert}}
+  </div>
+  {{else}}
+  <div class="container">
+  {{#if noCurrentUser}}
+    <div class="container">
+  {{> login}}
+</div>
+  {{else}}
+  <h1>Insert Residential Form!</h1>
+  <div class="well">
+      {{#autoForm collection="Residential" id="insertResidentialForm" type="insert" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-6" type="method" meteormethod="addResidential" resetOnSuccess=true}}
+      <fieldset>
+        <legend>Accomodation Type</legend>
+        {{> afQuickField name="accoType" options="allowed"}}
+        {{#if afFieldValueIs name="accoType" value="Duplex"}}
+        {{> afQuickField name="duplex" options="allowed"}}
+        {{/if}}
+        {{#if afFieldValueIs name="accoType" value="Bungalow"}}
+        {{> afQuickField name="bungalow" options="allowed"}}
+        {{/if}}
+        {{#if afFieldValueIs name="accoType" value="Apartment Block"}}
+        {{> afQuickField name="apartment" options="allowed"}}
+        {{/if}}
+
+
+      <legend>Tenant's Details</legend>
+
+    {{> afQuickField name="firstName" }}
+    {{> afQuickField name="otherName" }}
+    {{> afQuickField name="surName" }}
+
+    {{> afQuickField name="occupation"}}
+
+    {{> afQuickField name="sex" options="allowed" }}
+    {{> afQuickField name="maritalStatus" options="allowed" }}
+    {{> afQuickField name="doBirth"}}
+    {{> afQuickField name="phoneNo1"}}
+    {{> afQuickField name="phoneNo2" }}
+    {{> afQuickField name="email" }}
+
+    {{> afQuickField name="createdOn"}}
+   {{> afQuickField name="createdBy" }}
+   {{> afQuickField name="propId" value=_id}}
+
+  </fieldset>
+
+  <button type = "submit" class="btn btn-primary">Submit</button>
+
+    {{/autoForm}}
+</div>
+{{/if}}
+</div>
+{{/if}}
+</template>

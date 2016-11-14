@@ -1,0 +1,77 @@
+<template name="updateEntertainForm">
+  {{#if isSuccessfulInsert}}
+  <div class="container">
+    <h1>The entertainment category enumeration form was successfully updated to the database!</h1>
+  </div>
+  {{else}}
+  <div class="container">
+  {{#if noCurrentUser}}
+    <div class="container">
+  {{> login}}
+</div>
+  {{else}}
+  {{#if isInRole 'edit'}}
+  <h1>Update Entertain Forms!</h1>
+  <div class="well">
+
+
+    {{#autoForm collection="Entertain" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-5" id="updateEntertainForm" type="method-update" meteormethod="updateEntertain"
+    doc=this }}
+    <fieldset>
+      <legend>Entertain Institution's Details</legend>
+
+      {{> afQuickField name="entType" options="allowed"}}
+      {{#if afFieldValueIs name="entType" value="Hotel"}}
+      {{> afQuickField name="hotel" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="entType" value="Continental Resturant"}}
+      {{> afQuickField name="cres" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="entType" value="Ordinary Resturant"}}
+      {{> afQuickField name="ores" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="entType" value="Recreational Facility"}}
+      {{> afQuickField name="recreation" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="entType" value="Night Club"}}
+      {{> afQuickField name="nclub" options="allowed"}}
+      {{/if}}
+      {{#if afFieldValueIs name="entType" value="Video Rentals"}}
+      {{> afQuickField name="video" options="allowed"}}
+      {{/if}}
+
+      {{> afQuickField name="bizName" }}
+      <legend>Owner's Details</legend>
+      {{> afQuickField name="firstName" }}
+      {{> afQuickField name="otherName" }}
+      {{> afQuickField name="surName" }}
+
+      {{> afQuickField name="sex" options="allowed" }}
+      {{> afQuickField name="maritalStatus" options="allowed" }}
+      {{> afQuickField name="doBirth"}}
+
+      {{> afQuickField name="phoneNo1"}}
+      {{> afQuickField name="phoneNo2" }}
+      {{> afQuickField name="email" }}
+
+      {{> afQuickField name="createdOn"}}
+      {{> afQuickField name="createdBy" }}
+
+</fieldset>
+
+<button type="submit" class="btn btn-primary">Update</button>
+
+    {{/autoForm}}
+    </div>
+    <div>
+    {{#if isInRole 'admin'}}
+     {{#quickRemoveButton collection="Entertain" _id=this._id beforeRemove=beforeRemove class="btn btn-danger" }}Delete{{/quickRemoveButton}}
+     {{/if}}
+  </div>
+  {{else}}
+  {{> forbidden}}
+  {{/if}}
+  {{/if}}
+</div>
+{{/if}}
+</template>
