@@ -41,8 +41,19 @@ Template.viewProperty.helpers({
       }
     }
     return payment;
+  },
+  getPaymentType: function(accoType, ...args) {
+    paymentType = "";
+    for(i = 0; i < args.length; i++) {
+      if(args[i] && (typeof args[i] != "object")) {
+        paymentType += PaymentsTypeForProperties[accoType][args[i]];
+      }
+    }
+    return paymentType;
+    console.log(paymentType);
   }
 });
+
 
 Template.viewPropertyInMap.onCreated(function() {
   self = this;
