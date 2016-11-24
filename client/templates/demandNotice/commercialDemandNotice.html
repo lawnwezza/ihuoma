@@ -6,23 +6,41 @@
   {{else}}
   <div class="container">
   {{#if isInRole 'edit'}}
-  <h3>To add a commercial category, please enter property id</h3>
-    <form class="js-add-com-category">
-        <div class="form-group row">
-          <div class="col-sm-2"></div>
-          <label for="Search ID" class="col-sm-2 form-control-label form-control-lg">property id</label>
-          <div class="col-sm-4">
-          <input type="text" class="form-control form-control-lg" id="propID" name="propID" placeholder="Property ID">
-          </div>
-        </div>
+  <h3>Government of Ebonyi State</h3>
+  <p>Id: {{_id}}  </p>
+  <p>Business Name:{{comType}}</p>
+  <p>Owner's Name:  </p>
 
-        <div class="form-group row">
-          <div class="col-sm-4"></div>
-          <div class="col-sm-4">
-          <input type="submit" class="btn btn-primary" value="Enter" style="width:120px">
-          </div>
-        </div>
-    </form>
+  <div>
+    <h3>Commercial Details</h3>
+    <table class="table table-hover css-serial table-condensed">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Business Name</th>
+          <th>Owner's Name</th>
+          <th>Business Type</th>
+          <th>Phone No</th>
+          <th>Payment Type</th>
+          <th>Annual Payment</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td></td>
+          <td>{{bizName}}<br><strong>{{_id}}</strong></td>
+          <td>{{surName}},<br>{{firstName}} {{otherName}}</td>
+          <td>{{comType}}:<br>{{bizcenter}}{{printpress}}{{transport}}{{elect}}{{boutique}}{{artisan}}</td>
+          <td>{{phoneNo1}}<br>{{phoneNo2}}</td>
+          <td>{{getPaymentType comType bizcenter printpress transport elect boutique artisan}}</td>
+          <td>{{getAnnualPayment comType bizcenter printpress transport elect boutique artisan}}</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div> <!--end table div -->
+
     {{else}}
     {{> forbidden}}
     {{/if}}
