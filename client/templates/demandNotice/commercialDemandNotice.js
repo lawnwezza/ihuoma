@@ -1,6 +1,9 @@
 Template.commercialDemandNotice.helpers({
   commercial: function(){
-    return Commercial.findOne({});
+  return Commercial.findOne({});
+  },
+  property: function(){
+  return Property.findOne({_id:Commercial.findOne().propId});
   },
   getAnnualPayment: function(accoType, ...args) {
     payment = 0;
@@ -20,5 +23,18 @@ Template.commercialDemandNotice.helpers({
     }
     return paymentType;
     console.log(paymentType);
+  },
+  getPaymentInWords: function(accoType, ...args) {
+    paymentInWords = "";
+    for(i = 0; i < args.length; i++) {
+      if(args[i] && (typeof args[i] != "object")) {
+        paymentInWords += AnnualPaymentsInWords[accoType][args[i]];
+      }
+    }
+    return paymentInWords;
+    console.log(paymentInWords);
+  },
+  dateOfIssue: function() {
+    return new Date();
   }
 });
