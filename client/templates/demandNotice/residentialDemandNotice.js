@@ -1,13 +1,40 @@
-Template.residentialDemandNotice.events({
-  'submit .js-add-res-category': function(event) {
-    event.preventDefault();
-    var propIdVar = event.target.propID.value;
-    Session.set("propId", propIdVar);
-    Session.get("propId");
-    console.log(Session.get("propId"));
-    //console.log(propIdVar);
-    Property.findOne({_id:"propIdVar"});
-    Router.go("/addResidentialCategory/"+propIdVar);
-
+Template.residentialDemandNotice.helpers({
+  residential: function(){
+  return Residential.findOne({});
+  },
+  property: function(){
+  return Property.findOne({_id:Residential.findOne().propId});
+  },
+  getAnnualPayment: function(accoType, ...args) {
+    payment = 0;
+    for(i = 0; i < args.length; i++) {
+      if(args[i] && (typeof args[i] != "object")) {
+        payment += AnnualPaymentsForProperties[accoType][args[i]];
+      }
+    }
+    return payment;
+  },
+  getPaymentType: function(accoType, ...args) {
+    paymentType = "";
+    for(i = 0; i < args.length; i++) {
+      if(args[i] && (typeof args[i] != "object")) {
+        paymentType += PaymentsTypeForProperties[accoType][args[i]];
+      }
+    }
+    return paymentType;
+    console.log(paymentType);
+  },
+  getPaymentInWords: function(accoType, ...args) {
+    paymentInWords = "";
+    for(i = 0; i < args.length; i++) {
+      if(args[i] && (typeof args[i] != "object")) {
+        paymentInWords += AnnualPaymentsInWords[accoType][args[i]];
+      }
+    }
+    return paymentInWords;
+    console.log(paymentInWords);
+  },
+  dateOfIssue: function() {
+    return new Date();
   }
 });

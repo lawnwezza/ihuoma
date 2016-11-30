@@ -1,4 +1,5 @@
 <template name="medicalDemandNotice">
+  <div class="container">
   {{#if noCurrentUser}}
     <div class="container">
   {{> login}}
@@ -6,27 +7,65 @@
   {{else}}
   <div class="container">
   {{#if isInRole 'edit'}}
-  <h3>To add a medical category, please enter property id</h3>
-    <form class="js-add-med-category">
-        <div class="form-group row">
-          <div class="col-sm-2"></div>
-          <label for="Search ID" class="col-sm-2 form-control-label form-control-lg">property id</label>
-          <div class="col-sm-4">
-          <input type="text" class="form-control form-control-lg" id="propID" name="propID" placeholder="Property ID">
-          </div>
-        </div>
+  <div class="row">
+    <div class="span4"></div>
+    <div class="span4"><img class="img-thumbnail center-block" style="margin-top:1px" src="/images/coat.png" alt="coat of arms"></div>
+    <div class="span4"></div>
+  </div>
+  <div class="row">
+    <h1 style= "line-height:30%" align="center"> Government of Ebonyi State</h1>
+    <h2 style= "line-height:30%" align="center">Internal Revenue Board</h2>
+  </div>
 
-        <div class="form-group row">
-          <div class="col-sm-4"></div>
-          <div class="col-sm-4">
-          <input type="submit" class="btn btn-primary" value="Enter" style="width:120px">
-          </div>
-        </div>
-    </form>
+<div class="row" style="margin-top:30px">
+  <div class="span6">
+    <p class="demand" style= "line-height:70%"><b>PropertyId: {{property._id}}</b></p>
+    <p class="demand" style= "line-height:70%"><b>Property Address: {{property.propAddrNo}} {{property.propAddrName}} {{property.propAddrType}}, {{property.abakalikiWard}}{{property.izziWard}}{{property.ebonyiWard}}{{property.ohaukwuWard}}{{property.ezzaNorthWard}}{{property.ezzaSouthWard}}{{property.ikwoWard}}{{property.ishieluWard}}{{property.afikpoNorthWard}}{{property.afikpoSouthWard}}{{property.ivoWard}}{{property.ohaozaraWard}}{{property.onichaWard}}, {{property.propAddrLga}} LGA.</b></p>
+    <p class="demand" style= "line-height:70%"><b>Date Of Issue:{{dateOfIssue}}</b></p>
+  </div>
+  <div class="span6"></div>
+</div>
+
+
+<div class="row">
+    <h2 align="center">Demand Notice</h2>
+    <p class="demand">In view of the statutory provision and the exercise of power of the State Government by Section 1 (2) of the taxes and levies Act 1 of 1998 part 3 therein, for the  Government Chargable Fees, Levies and Licences due to be collected in the Federal Republic of Nigeria, you are by this notice required to pay all the concerned fees, levies and licences due for Ebonyi State Government within 7 clear days from date herein. </p>
+    <p class="demand">Note: The State shall not hesitate in using the power conferred on her to compel the defaulter(s) to pay both the charged fees and the fine therein.</p>
+    <table class="table table-hover css-serial table-condensed demand">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Institution<br>Name</th>
+          <th>Institution<br>Type</th>
+          <th>Phone No</th>
+          <th>Payment Type</th>
+          <th>Annual Payment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td>{{hosName}}<br><strong>{{_id}}</strong></td>
+          <td>{{medType}}:<br>{{govhos}}{{privhos}}{{consclinic}}{{pharm}}{{medlab}}</td>
+          <td>{{phoneNo1}}<br>{{phoneNo2}}</td>
+          <td>{{getPaymentType medType govhos privhos consclinic pharm medlab}}</td>
+          <td>{{getAnnualPayment medType govhos privhos consclinic pharm medlab}} Naira</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="demand"><b>Amount in words: {{getPaymentInWords medType govhos privhos consclinic pharm medlab}}</b></p>
+    <p class="demand">Payment of the amount demanded is to be made at any of the listed Bank(s) not later than 14 days from the date on this bill. </p>
+    <h3 align="center">Payment must not be made to any individual.</h3>
+    <h3>Designated Banks For Payment:</h3>
+    <p class="demand"><b>Bank Name: Fidelity Bank; Account Name: Ebonyi State IGR Account; Account Number: 1234567890</b></p>
+  </div> <!--end table div -->
+  <div>
+
+  </div>
     {{else}}
     {{> forbidden}}
     {{/if}}
   </div>
   {{/if}}
-
+</div>
 </template>
