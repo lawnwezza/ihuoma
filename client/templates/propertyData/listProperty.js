@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 //implementing infinite scroll
-Session.set("propertyLimit",20);
+Session.set("propertyLimit",100);
 lastScrollTop = 0;
 //this is ok
 $(window).scroll(function(event){
@@ -11,7 +10,7 @@ if($(window).scrollTop() + $(window).height() > $(document).height() - 100){
 var scrollTop = $(this).scrollTop();
 if(scrollTop > lastScrollTop){
 //console.log("going down at the bottom");
-Session.set("propertyLimit", Session.get("propertyLimit") + 20);
+Session.set("propertyLimit", Session.get("propertyLimit") + 100);
 }
 lastScrollTop = scrollTop;
 }//end of the if statement
@@ -23,17 +22,6 @@ lastScrollTop = scrollTop;
 Template.listProperty.helpers({
   property: function(){
     return Property.find({},{sort:{createdOn:-1}, limit:Session.get("propertyLimit")});
-=======
-Session.setDefault("skip",0);
-Tracker.autorun(function(){
-//console.log("what is happening here");
-Meteor.subscribe("property",Session.get("skip"));
-});
-Template.listProperty.helpers({
-  property: function(){
-    //Note that if you want the documents in sorted order on the client, you will need to sort them again in your template code.
-    return Property.find({},{sort:{createdOn:-1}});
->>>>>>> baseline
   },
   residential: function(){
     propId = this._id;
@@ -93,24 +81,5 @@ Template.listProperty.events({
   "click .addButton": function(event, template){
     //console.log("I am clicking the addButton");
     return Session.set('successfulInsertForm', false)
-  },
-  "click .previous":function(event, template){
-    console.log("previous clicked");
-    if(Number(Session.get("skip")) > 19){
-      Session.set("skip", Number(Session.get("skip")) -20);
-    }
-  },
-  "click .next": function(event,template){
-    console.log("next clicked");
-      Session.set("skip", Number(Session.get("skip")) +20);
   }
 });
-Template.listProperty.nextText = function(){
-return (Number(Session.get("skip")) +20) + " " + (Number(Session.get("skip")) +40);
-}
-Template.listProperty.prevText =function(){
-if(Number(Session.get("skip")) < 20){
-  return "";
-}
-return (Number(Session.get("skip")) -20) + " " + (Number(Session.get("skip")));
-}
