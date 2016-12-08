@@ -160,3 +160,10 @@ a.dropdown-toggle {
     vertical-align: middle;
     padding: 0 10px 0 15px;
 }
+
+p.demand {
+    font-size: 20px;
+}
+table.demand {
+    font-size: 20px;
+}

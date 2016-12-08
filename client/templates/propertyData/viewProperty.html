@@ -90,6 +90,7 @@
                   <th>Appartment<br>Type</th>
                   <th>Occupation</th>
                   <th>Phone No</th>
+                  <th>Payment Type</th>
                   <th>Annual Payment</th>
                   <th style="width: 40px">Edit</th>
                 </tr>
@@ -102,6 +103,7 @@
                   <td>{{accoType}}:<br>{{duplex}}{{bungalow}}{{apartment}}</td>
                   <td>{{occupation}}</td>
                   <td>{{phoneNo1}}<br>{{phoneNo2}}</td>
+                  <td>{{getPaymentType accoType duplex bungalow apartment}}</td>
                   <td>{{getAnnualPayment accoType duplex bungalow apartment}}</td>
                   <td><a href="/residential/{{_id}}" class="btn btn-primary btn-sm"><span class="fa fa-pencil" aria-hidden="true"></span></a></td>
                 </tr>
@@ -122,6 +124,7 @@
                   <th>Owner's Name</th>
                   <th>Business Type</th>
                   <th>Phone No</th>
+                  <th>Payment Type</th>
                   <th>Annual Payment</th>
                   <th style="width: 40px">Edit</th>
                 </tr>
@@ -134,6 +137,7 @@
                   <td>{{surName}},<br>{{firstName}} {{otherName}}</td>
                   <td>{{stoType}}:<br>{{sto}}{{salon}}</td>
                   <td>{{phoneNo1}}<br>{{phoneNo2}}</td>
+                  <td>{{getPaymentType stoType sto salon}}</td>
                   <td>{{getAnnualPayment stoType sto salon}}</td>
                   <td><a href="/store/{{_id}}" class="btn btn-primary btn-sm"><span class="fa fa-pencil" aria-hidden="true"></span></a></td>
                 </tr>
@@ -154,6 +158,7 @@
                   <th>Owner's Name</th>
                   <th>Business Type</th>
                   <th>Phone No</th>
+                  <th>Payment Type</th>
                   <th>Annual Payment</th>
                   <th style="width: 40px">Edit</th>
                 </tr>
@@ -166,6 +171,7 @@
                   <td>{{surName}},<br>{{firstName}} {{otherName}}</td>
                   <td>{{comType}}:<br>{{bizcenter}}{{printpress}}{{transport}}{{elect}}{{boutique}}{{artisan}}</td>
                   <td>{{phoneNo1}}<br>{{phoneNo2}}</td>
+                  <td>{{getPaymentType comType bizcenter printpress transport elect boutique artisan}}</td>
                   <td>{{getAnnualPayment comType bizcenter printpress transport elect boutique artisan}}</td>
                   <td><a href="/commercial/{{_id}}" class="btn btn-primary btn-sm"><span class="fa fa-pencil" aria-hidden="true"></span></a></td>
                 </tr>
@@ -187,6 +193,7 @@
                   <th>Owner's Name</th>
                   <th>Business Type</th>
                   <th>Phone No</th>
+                  <th>Payment Type</th>
                   <th>Annual Payment</th>
                   <th style="width: 40px">Edit</th>
                 </tr>
@@ -199,6 +206,7 @@
                   <td>{{surName}},<br>{{firstName}} {{otherName}}</td>
                   <td>{{entType}}:<br>{{hotel}}{{cres}}{{ores}}{{recreation}}{{nclub}}{{video}}</td>
                   <td>{{phoneNo1}}<br>{{phoneNo2}}</td>
+                  <td>{{getPaymentType entType hotel cres ores recreation nclub video}}</td>
                   <td>{{getAnnualPayment entType hotel cres ores recreation nclub video}}</td>
                   <td><a href="/entertain/{{_id}}" class="btn btn-primary btn-sm"><span class="fa fa-pencil" aria-hidden="true"></span></a></td>
                 </tr>
@@ -218,6 +226,7 @@
                   <th>Institution<br>Name</th>
                   <th>Institution<br>Type</th>
                   <th>Phone No</th>
+                  <th>Payment Type</th>
                   <th>Annual Payment</th>
                   <th style="width: 40px">Edit</th>
                 </tr>
@@ -229,6 +238,7 @@
                   <td>{{finName}}<br><strong>{{_id}}</strong></td>
                   <td>{{finType}}:<br>{{bank}} {{insurance}} {{bureau}}</td>
                   <td>{{phoneNo1}}<br>{{phoneNo2}}</td>
+                  <td>{{getPaymentType finType bank insurance bureau}}</td>
                   <td>{{getAnnualPayment finType bank insurance bureau}}</td>
                   <td><a href="/financial/{{_id}}" class="btn btn-primary btn-sm"><span class="fa fa-pencil" aria-hidden="true"></span></a></td>
                 </tr>
@@ -248,6 +258,7 @@
                   <th>Institution<br>Name</th>
                   <th>Institution<br>Type</th>
                   <th>Phone No</th>
+                  <th>Payment Type</th>
                   <th>Annual Payment</th>
                   <th style="width: 40px">Edit</th>
                 </tr>
@@ -259,6 +270,7 @@
                   <td>{{hosName}}<br><strong>{{_id}}</strong></td>
                   <td>{{medType}}:<br>{{govhos}}{{privhos}}{{consclinic}}{{pharm}}{{medlab}}</td>
                   <td>{{phoneNo1}}<br>{{phoneNo2}}</td>
+                  <td>{{getPaymentType medType govhos privhos consclinic pharm medlab}}</td>
                   <td>{{getAnnualPayment medType govhos privhos consclinic pharm medlab}}</td>
                   <td><a href="/medical/{{_id}}" class="btn btn-primary btn-sm"><span class="fa fa-pencil" aria-hidden="true"></span></a></td>
                 </tr>
@@ -278,6 +290,7 @@
                   <th>Institution<br>Name</th>
                   <th>Institution<br>Type</th>
                   <th>Phone No</th>
+                  <th>Payment Type</th>
                   <th>Annual Payment</th>
                   <th style="width: 40px">Edit</th>
                 </tr>
@@ -289,6 +302,7 @@
                   <td>{{instName}}<br><strong>{{_id}}</strong></td>
                   <td>{{govType}}:<br>{{govmnt}}{{rel}}{{tert}}{{sec}}{{pri}}</td>
                   <td>{{phoneNo1}}<br>{{phoneNo2}}</td>
+                  <td>{{getPaymentType govType govmnt rel tert sec pri}}</td>
                   <td>{{getAnnualPayment govType govmnt rel tert sec pri}}</td>
                   <td><a href="/govt/{{_id}}" class="btn btn-primary btn-sm"><span class="fa fa-pencil" aria-hidden="true"></span></a></td>
                 </tr>

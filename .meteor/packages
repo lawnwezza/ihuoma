@@ -6,21 +6,21 @@
 
 meteor-base@1.0.4             # Packages every Meteor app needs to have
 mobile-experience@1.0.4       # Packages for a great mobile UX
-mongo@1.1.10                   # The database Meteor supports right now
+mongo@1.1.14                   # The database Meteor supports right now
 blaze-html-templates@1.0.4    # Compile .html files into Meteor Blaze views
-reactive-var@1.0.10            # Reactive variable for tracker
-jquery@1.11.9                  # Helpful client-side library
-tracker@1.1.0                 # Meteor's client-side reactive programming library
-session
-standard-minifier-css@1.1.8   # CSS minifier run for production mode
-standard-minifier-js@1.1.8    # JS minifier run for production mode
-es5-shim@4.6.13                # ECMAScript 5 compatibility for older browsers.
-ecmascript@0.5.7              # Enable ECMAScript2015+ syntax in app code
+reactive-var@1.0.11            # Reactive variable for tracker
+jquery@1.11.10                  # Helpful client-side library
+tracker@1.1.1                 # Meteor's client-side reactive programming library
+session@1.1.7
+standard-minifier-css@1.3.2   # CSS minifier run for production mode
+standard-minifier-js@1.2.1    # JS minifier run for production mode
+es5-shim@4.6.15                # ECMAScript 5 compatibility for older browsers.
+ecmascript@0.6.1              # Enable ECMAScript2015+ syntax in app code
 
 
-stylus
+stylus@2.513.8
 twbs:bootstrap
-accounts-password
+accounts-password@1.3.3
 ian:accounts-ui-bootstrap-3
 aldeed:autoform
 aldeed:collection2
@@ -31,12 +31,13 @@ aldeed:delete-button
 meteortoys:allthings
 fortawesome:fontawesome
 richsilv:owl-carousel
-check
+check@1.2.4
 alanning:roles
-less
+less@2.7.8
 yogiben:admin
 aldeed:simple-schema
 gbit:populate
 dburles:google-maps
 bredikhin:contact-form
-email
+email@1.1.18
+shell-server
