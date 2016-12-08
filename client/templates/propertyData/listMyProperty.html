@@ -5,79 +5,40 @@
       {{> login}}
     </div>
     {{else}}
-    <h1>Property List</h1>
-    <a class="addButton btn btn-primary pull-right" href="{{pathFor route='insertPropertyForm'}}" role="button">Add property</a>
-    <div class="table-responsive ">
-      <table class="table table-hover table-condensed css-serial">
+    <div class="container">
+      <h1>Property List</h1>
+      <a class= "addButton btn btn-primary pull-right" href="{{pathFor route='insertPropertyForm'}}" role="button">Add property</a>
+
+    </div>
+
+    <!-- this is the point I will start changing -->
+
+    <div class="container table-responsive">
+      <table class="css-serial table-striped table-responsive table-hover">
         <thead>
-          <tr class="">
+          <tr>
             <th>#</th>{{#if isInRole 'edit'}}
-            <th>Edit</th>{{/if}}
-            <th>PropertyID:<br>Phone No</th>
-            <th>Enumeration Area:<br>Property Address</th>
-            <th>Owner's Name:<br>Address</th>
-            <th>Residential Category</th>
-            <th>Store/Salon Category</th>
+            <th class="col-md-1">Edit</th>{{/if}}
+            <th class="col-md-2">PropertyID</th>
+            <th class="col-md-1">Enumeration Area</th>
+            <th class="col-md-4">Property Address</th>
+            <th class="col-md-3">Owner's Name</th>
+            <th class="col-md-1">Phone Number</th>
           </tr>
         </thead>
         <tbody>
           {{#each property}}
           <tr>
-            <td></td>{{#if isInRole 'edit'}}
-            <td><a href="/listProperty/{{_id}}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a><br>
+            <strong><td></td></strong>{{#if isInRole 'edit'}}
+            <td align="center"><a href="/listProperty/{{_id}}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a><br>
               <a href="#addCategoryModal" data-toggle="modal" data-property-id="{{_id}}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
             </td>{{/if}}
-            <td><a href="/viewProperty/{{_id}}">{{_id}}</a>:<br>{{phoneNo1}}<br>{{phoneNo2}}</td>
-            <td><strong>{{enumArea}}:</strong><br>{{propAddrNo}} {{propAddrName}} {{propAddrType}}, {{abakalikiWard}}{{izziWard}}{{ebonyiWard}}{{ohaukwuWard}}{{ezzaNorthWard}}{{ezzaSouthWard}}{{ikwoWard}}{{ishieluWard}}{{afikpoNorthWard}}{{afikpoSouthWard}}{{ivoWard}}{{ohaozaraWard}}{{onichaWard}}, {{propAddrLga}} </td>
-            <td><strong>{{surName}},</strong> {{firstName}} {{otherName}}:<br>{{ownAddrNo}} {{ownAddrName}} {{ownAddrType}},{{ownAbakalikiWard}}{{ownIzziWard}}{{ownEbonyiWard}}{{ownOhaukwuWard}}{{ownEzzaNorthWard}}{{ownEzzaSouthWard}}{{ownIkwoWard}}{{ownIshieluWard}}{{ownAfikpoNorthWard}}{{ownAfikpoSouthWard}}{{ownIvoWard}}{{ownOhaozaraWard}}{{ownOnichaWard}}, {{ownAddrLga}}.</td>
-            <td>
-              <table class="table table-hover table-condensed css-serial">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Tenant<br>Name</th>
-                    <th>Apartment<br>Type</th>
-                    <th> Phone No</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {{#each residential}}
-                  <tr>
-                    <td></td>
-                    <td><strong>{{surName}},</strong><br>{{firstName}} {{otherName}}</td>
-                    <td><strong>{{accoType}}:</strong><br>{{duplex}}{{bungalow}}{{apartment}}</td>
-                    <td>{{phoneNo1}}<br>{{phoneNo2}}</td>
-                  </tr>
-                  {{/each}}
-                </tbody>
-              </table>
-            </td>
-            <!-- end of Residential section-->
-            <td>
-              <table class="table table-hover table-condensed css-serial">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>Business<br>Name</th>
-                    <th>Owner's<br>Name</th>
-                    <th>Business<br>Type</th>
-                    <th>Phone No</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {{#each store}}
-                  <tr>
-                    <td></td>
-                    <td>{{bizName}}</td>
-                    <td><strong>{{surName}},</strong><br>{{firstName}} {{otherName}}</td>
-                    <td>{{stoType}}:<br>{{sto}}{{salon}}</td>
-                    <td>{{phoneNo1}}<br>{{phoneNo2}}</td>
-                  </tr>
-                  {{/each}}
-                </tbody>
-              </table>
-            </td>
-            <!--end of Store section -->
+            <td><a href="/viewProperty/{{_id}}">{{_id}}</a></td>
+            <td align="center">{{enumArea}}</td>
+            <td>{{propAddrNo}} {{propAddrName}} {{propAddrType}}, {{abakalikiWard}}{{izziWard}}{{ebonyiWard}}{{ohaukwuWard}}{{ezzaNorthWard}}{{ezzaSouthWard}}{{ikwoWard}}{{ishieluWard}}{{afikpoNorthWard}}{{afikpoSouthWard}}{{ivoWard}}{{ohaozaraWard}}{{onichaWard}} ,{{propAddrLga}}</td>
+            <td>{{surName}}, {{firstName}} {{otherName}}</td>
+            <td>{{phoneNo1}} <br> {{PhoneNo2}}</td>
+
             </tr> <!-- end of the main property table row -->
           {{/each}}
         </tbody>
