@@ -1,5 +1,5 @@
 
 // Publish the entire Collection.  Subscription performed in the router.
-  Meteor.publish("property", function () {
-    return Property.find({},{sort:{createdOn:-1}});
+  Meteor.publish("property", function(skipCount){
+    return Property.find({},{limit:20,skip:skipCount});
   });
