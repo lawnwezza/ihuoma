@@ -1,0 +1,16 @@
+<template name="searchForm">
+<div class="container">
+  {{#autoForm schema=searchFormSchema id="searchForm" type="method" meteormethod="sendSearch"}}
+  <fieldset>
+    <legend align="center">Search Category</legend>
+    {{> afQuickField name="choose" options="allowed"}}
+    {{> afQuickField name="catId"}}
+
+    <div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="reset" class="btn btn-default">Reset</button>
+    </div>
+  </fieldset>
+  {{/autoForm }}
+</div>
+</template>
