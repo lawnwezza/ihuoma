@@ -36,7 +36,7 @@ Template.registerHelper("Config", function() {
 
 AutoForm.addHooks(null, {
   onSuccess: function () {
-    console.log("AutoForm Hooks testing");
+    //console.log("AutoForm Hooks testing");
     return Session.set('successfulInsertForm', true);
   }
 });
